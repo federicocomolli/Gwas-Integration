@@ -4,19 +4,19 @@
       xsi:schemaLocation="http://polimi.it/GDMImporter /Example/xml/configurationSchema.xsd">
     <settings>
         <!--BASE WORKING FOLDER FOR THE IMPORTER-->
-        <base_working_directory>C:\Users\fedec\Università\Tesi\Metadata-Manager\Example\examples_meta</base_working_directory>
-        <gcm_config_file>C:\Users\fedec\Università\Tesi\Metadata-Manager\src\main\resources\application.conf</gcm_config_file>
+        <base_working_directory>C:\Users\fedec\Università\Tesi\Project\Example\examples_meta</base_working_directory>
+        <gcm_config_file>C:\Users\fedec\Università\Tesi\Project\src\main\resources\application.conf</gcm_config_file>
         <mapper_source>FinnGen</mapper_source>
         <database_connection_url>jdbc:postgresql://localhost/gmql_metadata_federico</database_connection_url>
         <database_connection_url_importer>jdbc:postgresql://localhost/gmql_importer_federico</database_connection_url_importer>
         <database_connection_user>geco</database_connection_user>
         <database_connection_pw>geco78</database_connection_pw>
         <database_connection_driver>org.postgresql.Driver</database_connection_driver>
-        <flattener_rule_base>C:\Users\fedec\Università\Tesi\Metadata-Manager\Example\flattener_rule_base.txt</flattener_rule_base>
-        <download_enabled>false</download_enabled>
+        <flattener_rule_base>C:\Users\fedec\Università\Tesi\Project\Example\flattener_rule_base.txt</flattener_rule_base>
+        <download_enabled>true</download_enabled>
         <transform_enabled>false</transform_enabled>
         <cleaner_enabled>false</cleaner_enabled>
-        <mapper_enabled>true</mapper_enabled>
+        <mapper_enabled>false</mapper_enabled>
         <enricher_enabled>false</enricher_enabled>
         <flattener_enabled>false</flattener_enabled>
         <load_enabled>false</load_enabled>
@@ -60,7 +60,7 @@
                 <parameter>
                     <description>Mappings</description>
                     <key>mappings</key>
-                    <value>C:\Users\fedec\Università\Tesi\Metadata-Manager\Example\xml\settingsFinnGen.xml</value>
+                    <value>C:\Users\fedec\Università\Tesi\Project\Example\xml\settingsFinnGen.xml</value>
                 </parameter>
             </parameter_list>
             <dataset_list>
