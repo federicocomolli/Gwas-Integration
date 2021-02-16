@@ -15,8 +15,8 @@
         <database_connection_pw>geco78</database_connection_pw>
         <database_connection_driver>org.postgresql.Driver</database_connection_driver>
         <flattener_rule_base>C:\Users\fedec\Università\Tesi\Project\Example\flattener_rule_base.txt</flattener_rule_base>
-        <download_enabled>true</download_enabled>
-        <transform_enabled>false</transform_enabled>
+        <download_enabled>false</download_enabled>
+        <transform_enabled>true</transform_enabled>
         <cleaner_enabled>false</cleaner_enabled>
         <mapper_enabled>false</mapper_enabled>
         <enricher_enabled>false</enricher_enabled>
