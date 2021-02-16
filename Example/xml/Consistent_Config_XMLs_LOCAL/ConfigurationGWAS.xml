@@ -75,7 +75,7 @@
                 <parameter>
                     <description>Mappings</description>
                     <key>mappings</key>
-                    <value>home/comolli/project/Example/xml/settingsGWAS.xml</value>
+                    <value>/home/comolli/project/Example/xml/settingsGWAS.xml</value>
                 </parameter>
             </parameter_list>
             <dataset_list>
