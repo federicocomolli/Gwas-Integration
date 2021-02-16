@@ -6,7 +6,8 @@
         <!--The local folder in which the files are saved-->
         <!--<base_working_directory>C:\Users\fedec\Università\Tesi\Project\Example\examples_meta</base_working_directory>-->
         <base_working_directory>/home/comolli/project/Example/examples_meta</base_working_directory>
-        <gcm_config_file>C:\Users\fedec\Università\Tesi\Project\src\main\resources\application.conf\</gcm_config_file>
+        <!--<gcm_config_file>C:\Users\fedec\Università\Tesi\Project\src\main\resources\application.conf\</gcm_config_file>-->
+        <gcm_config_file>/home/comolli/project/src/main/resources/application.conf\</gcm_config_file>
         <mapper_source>GWAS</mapper_source>
         <database_connection_url>jdbc:postgresql://localhost/gmql_metadata_federico</database_connection_url>
         <database_connection_url_importer>jdbc:postgresql://localhost/gmql_importer_federico</database_connection_url_importer>
