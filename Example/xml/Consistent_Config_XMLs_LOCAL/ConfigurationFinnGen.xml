@@ -16,8 +16,8 @@
         <database_connection_driver>org.postgresql.Driver</database_connection_driver>
         <flattener_rule_base>C:\Users\fedec\Università\Tesi\Project\Example\flattener_rule_base.txt</flattener_rule_base>
         <download_enabled>false</download_enabled>
-        <transform_enabled>true</transform_enabled>
-        <cleaner_enabled>false</cleaner_enabled>
+        <transform_enabled>false</transform_enabled>
+        <cleaner_enabled>true</cleaner_enabled>
         <mapper_enabled>false</mapper_enabled>
         <enricher_enabled>false</enricher_enabled>
         <flattener_enabled>false</flattener_enabled>
