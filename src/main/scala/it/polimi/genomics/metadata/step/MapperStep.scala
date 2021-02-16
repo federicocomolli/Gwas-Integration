@@ -253,7 +253,8 @@ object MapperStep extends Step {
     try {
 
       var lines = scala.io.Source.fromFile(path).getLines.toList
-      val str: Array[String] = path.split("\\\\")
+      val str: Array[String] = path.split("/")
+      //val str: Array[String] = path.split("\\\\")
       val metadata_file_name: String = str.last //with extension for metadata file (.meta)
       val region_file_name: String = metadata_file_name.replace(".meta", "") //with extension for metadata file (.meta)
       val file_identifier: String = region_file_name.split("\\.").head //without extension
