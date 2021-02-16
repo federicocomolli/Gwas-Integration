@@ -30,15 +30,17 @@ class GwasTransformer extends Transformer {
     val accessionList = new ListBuffer[String]
     val candidates = new ListBuffer[String]
     if (filename.contains("associations")){
-      val inFolder = source.outputFolder + File.separator + "latest" + File.separator + "Downloads"
-      val reader = Source.fromFile(inFolder + File.separator + filename)
+      //val inFolder = source.outputFolder + File.separator + "latest" + File.separator + "Downloads"
+      val inFolder = source.outputFolder + "\\latest\\Downloads"
+      //val reader = Source.fromFile(inFolder + File.separator + filename)
+      val reader = Source.fromFile(inFolder + "\\" + filename)
       reader.getLines().drop(1).foreach(line => {
         val tmp = line.split("\t")
         val flag = tmp(20).contains("chr") || tmp(20).contains("Chr")
         if (tmp.length == 38 && (tmp(11)!="" || flag)){ accessionList += tmp(36)}
       })
       reader.close()
-      accessionList.distinct.take(1000).foreach(acc => {
+      accessionList.distinct.take(5).foreach(acc => {
         candidates += acc + ".gdm"
         candidates += acc + ".gdm.meta"
       })
