@@ -100,7 +100,7 @@ class FinnGenDownloader extends Downloader{
     val total = readerManifest.getLines().length - 1
     var counter = 0
     readerManifest = scala.io.Source.fromFile(manifestPath)
-    readerManifest.getLines().drop(1).take(5)foreach(line => {
+    readerManifest.getLines().drop(1).take(20)foreach(line => {
 
       val fileUrl = line.split("\t")(5)
       val fileName = line.split("\t")(0) + ".gz"
