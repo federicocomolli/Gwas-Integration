@@ -1054,7 +1054,8 @@ object DbHandler {
 
     def numberOfIndividuals = column[Int]("number_of_individuals")
 
-    def sourceId = column[String]("ancestry_source_id", O.Unique)
+    //def sourceId = column[String]("ancestry_source_id", O.Unique)
+    def sourceId = column[String]("ancestry_source_id")
 
     def cohort = foreignKey("ancestries_cohort_fk", cohortId, cohorts)(
       _.cohortId,
