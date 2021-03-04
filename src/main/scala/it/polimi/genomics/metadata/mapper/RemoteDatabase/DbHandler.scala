@@ -795,8 +795,11 @@ object DbHandler {
     checkResult(result)
   }
 
-  def checkInsertAncestry(cohortId: Int): Boolean = {
-    val query = ancestries.filter(_.cohortId === cohortId)
+  def checkInsertAncestry(cohortId: Int, broadAncestralCategory: String, countryOfOrigin: String, countryOfRecruitment: String, numberOfIndividuals: Int): Boolean = {
+    val query = ancestries.filter(value => {
+      value.cohortId === cohortId && value.broadAncestralCategory === broadAncestralCategory && value.countryOfOrigin === countryOfOrigin &&
+        value.countryOfRecruitment === countryOfRecruitment && value.numberOfIndividuals === numberOfIndividuals
+    })
     val action = query.result
     val result = database.run(action)
     checkResult(result)

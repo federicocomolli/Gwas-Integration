@@ -35,7 +35,7 @@ trait Ancestry extends Table{
   }
 
   override def checkInsert(): Boolean ={
-    dbHandler.checkInsertAncestry(this.cohortId)
+    dbHandler.checkInsertAncestry(this.cohortId, this.broadAncestralCategory, this.countryOfOrigin, this.countryOfRecruitment, this.numberOfIndividuals)
   }
 
   /*
