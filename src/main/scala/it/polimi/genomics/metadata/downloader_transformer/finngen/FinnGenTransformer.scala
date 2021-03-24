@@ -115,8 +115,32 @@ class FinnGenTransformer extends Transformer {
     //remove the first line containing the names of the columns
     val fileReader = scala.io.Source.fromFile(destinationPath + File.separator + filename)
     val writer = new PrintWriter(destinationPath + File.separator + "tmp.tsv")
+    //only 100 rows for testing
+    //fileReader.getLines().drop(1).take(100).foreach(line =>{
     fileReader.getLines().drop(1).foreach(line =>{
-      writer.write(line+"\n")
+      var regionLine = new ListBuffer[String]()
+      var count = 0
+      var chr = line.split("\t")(count)
+      val chrom = "chr" + chr
+      regionLine += chrom
+      count += 1
+      val start = line.split("\t")(count)
+      regionLine += start
+      val stop = (start.toLong + 1).toString
+      regionLine += stop
+      regionLine += "*"
+      count += 1
+      while (count < 12){
+        regionLine += line.split("\t")(count)
+        count += 1
+      }
+      var index=1
+      regionLine.foreach(d => {
+        if(index != regionLine.size) writer.write(d+"\t")
+        else writer.write(d)
+        index += 1
+      })
+      writer.write("\n")
     })
     writer.close()
     fileReader.close()
