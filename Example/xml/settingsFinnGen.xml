@@ -81,10 +81,10 @@
             <source_key>https://www.finngen.fi/en</source_key>
             <global_key>sourceSite</global_key>
         </mapping>
-        <mapping>
+        <!--<mapping>
             <source_key>path_https</source_key>
             <global_key>externalRef</global_key>
-        </mapping>
+        </mapping>-->
     </table>
 
     <table name="ITEMS">
@@ -108,19 +108,27 @@
         <mapping>
             <source_key>platform__snps_passing_qc_</source_key>
             <global_key>platform</global_key>
-        </mapping>
+        </mapping>-->
         <mapping>
-            <source_key></source_key>
+            <source_key>path_https</source_key>
             <global_key>sourceUrl</global_key>
         </mapping>
-        <mapping>
-            <source_key>link</source_key>
-            <global_key>sourcePage</global_key>
-        </mapping>
-        <mapping>
-            <source_key></source_key>
+        <mapping method="MANUAL">
+            <source_key>http://www.gmql.eu/gmql-rest/datasets/public.</source_key>
             <global_key>localUrl</global_key>
-        </mapping>-->
+        </mapping>
+        <mapping method="PREDEFINED-CONCAT" concat_character="">
+            <source_key>dataset_name</source_key>
+            <global_key>localUrl</global_key>
+        </mapping>
+        <mapping method="CONCAT" concat_character="/">
+            <source_key>phenocode</source_key>
+            <global_key>localUrl</global_key>
+        </mapping>
+        <mapping method="MANUAL-CONCAT" concat_character="">
+            <source_key>/region</source_key>
+            <global_key>localUrl</global_key>
+        </mapping>
         <mapping>
             <source_key>phenocode</source_key>
             <global_key>fileName</global_key>
@@ -128,6 +136,10 @@
         <mapping method="MANUAL-CONCAT" concat_character="">
             <source_key>.gdm</source_key>
             <global_key>fileName</global_key>
+        </mapping>
+        <mapping method="MANUAL">
+            <source_key>https://console.cloud.google.com/storage/browser/finngen-public-data-r4/summary_stats/</source_key>
+            <global_key>sourcePage</global_key>
         </mapping>
     </table>
 
