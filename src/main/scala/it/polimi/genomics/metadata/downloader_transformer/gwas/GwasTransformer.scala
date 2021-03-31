@@ -40,7 +40,7 @@ class GwasTransformer extends Transformer {
         if (tmp.length == 38 && (tmp(11)!="" || flag)){ accessionList += tmp(36)}
       })
       reader.close()
-      accessionList.distinct.take(5).foreach(acc => {
+      accessionList.distinct.take(500).foreach(acc => {
         candidates += acc + ".gdm"
         candidates += acc + ".gdm.meta"
       })
@@ -152,8 +152,17 @@ class GwasTransformer extends Transformer {
         count += 3
         //other attributes
         while (count < 32){
-          regionLine += line.split("\t")(count)
-          count += 1
+          //STRONGEST SNP-RISK ALLELE
+          if (count == 20) {
+            var all = line.split("\t")(count).split("-")(1)
+            regionLine += all
+            count += 1
+          }
+          else {
+            regionLine += line.split("\t")(count)
+            count += 1
+          }
+
         }
         var index=1
         regionLine.foreach(d => {
