@@ -77,14 +77,14 @@
             <source_key>phenocode</source_key>
             <global_key>sourceId</global_key>
         </mapping>
+        <!--<mapping>
+            <source_key></source_key>
+            <global_key>sourceSite</global_key>
+        </mapping>-->
         <mapping method="MANUAL">
             <source_key>https://www.finngen.fi/en</source_key>
-            <global_key>sourceSite</global_key>
-        </mapping>
-        <!--<mapping>
-            <source_key>path_https</source_key>
             <global_key>externalRef</global_key>
-        </mapping>-->
+        </mapping>
     </table>
 
     <table name="ITEMS">
