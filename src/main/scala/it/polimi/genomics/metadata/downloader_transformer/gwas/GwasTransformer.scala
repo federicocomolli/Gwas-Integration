@@ -40,7 +40,8 @@ class GwasTransformer extends Transformer {
         if (tmp.length == 38 && (tmp(11)!="" || flag)){ accessionList += tmp(36)}
       })
       reader.close()
-      accessionList.distinct.take(500).foreach(acc => {
+      //accessionList.distinct.take(500).foreach(acc => {
+      accessionList.distinct.foreach(acc => {
         candidates += acc + ".gdm"
         candidates += acc + ".gdm.meta"
       })
