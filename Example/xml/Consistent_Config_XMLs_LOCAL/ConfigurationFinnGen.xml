@@ -26,7 +26,7 @@
     </settings>
     <source_list>
         <source name="FinnGen">
-            <url>https://storage.googleapis.com/finngen-public-data-r4/summary_stats/R4_manifest.tsv</url>
+            <url>https://storage.googleapis.com/finngen-public-data-r5/summary_stats/R5_manifest.tsv</url>
             <source_working_directory>FinnGen</source_working_directory>
             <downloader>it.polimi.genomics.metadata.downloader_transformer.finngen.FinnGenDownloader</downloader>
             <transformer>it.polimi.genomics.metadata.downloader_transformer.finngen.FinnGenTransformer</transformer>
