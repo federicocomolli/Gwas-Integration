@@ -68,7 +68,7 @@
             </parameter_list>
             <dataset_list>
                 <dataset name="FinnGen">
-                    <dataset_working_directory>R4</dataset_working_directory>
+                    <dataset_working_directory>R5</dataset_working_directory>
                     <schema_url location="local">/../schemas/FinnGen_gdm.schema</schema_url>
                     <download_enabled>true</download_enabled>
                     <transform_enabled>true</transform_enabled>
