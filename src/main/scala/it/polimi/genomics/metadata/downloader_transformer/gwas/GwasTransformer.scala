@@ -191,7 +191,8 @@ class GwasTransformer extends Transformer {
   def metaGen(fileName: String, inPath: String, outPath: String): Unit = {
     val ancestryReader = Source.fromFile(inPath + File.separator + "gwas-catalog-ancestry.tsv")
     val studiesReader = Source.fromFile(inPath + File.separator + "gwas-catalog-studies_ontology-annotated.tsv")
-    val accession = fileName.substring(0, 10)
+    //val accession = fileName.substring(0, 10) IT'S WRONG!
+    val accession = fileName.substring(0, fileName.lastIndexOf(".")-4)
     val writer = new PrintWriter(outPath + File.separator + fileName)
 
     //extraction of metadata from studies file
