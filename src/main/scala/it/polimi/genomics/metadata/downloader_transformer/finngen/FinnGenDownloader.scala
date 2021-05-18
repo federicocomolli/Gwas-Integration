@@ -60,7 +60,7 @@ class FinnGenDownloader extends Downloader{
     * @param datasetId id of the dataset in the server.
     */
   def getManifest(url: String, source: Source, path: String, datasetId: Int, dataset: Dataset): Boolean ={
-    var manifestName = "ManifestR4.tsv"
+    var manifestName = "ManifestR5.tsv"
     val manifestPath = path + File.separator + manifestName
     try {
       val src = scala.io.Source.fromURL(url)

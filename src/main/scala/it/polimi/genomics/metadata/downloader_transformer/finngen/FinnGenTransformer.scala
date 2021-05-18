@@ -23,7 +23,7 @@ class FinnGenTransformer extends Transformer {
   val patternMetadata: Regex = """.*\.gdm\.meta""".r
   val patternRegionData: Regex = """.*\.gdm""".r
   val patternManifest: Regex = """Manifest.*\.tsv""".r
-  val manifestName = "ManifestR4.tsv"
+  val manifestName = "ManifestR5.tsv"
 
   /**
     * by receiving an original filename returns the new GDM candidate name(s).
