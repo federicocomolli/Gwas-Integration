@@ -1,6 +1,6 @@
 package it.polimi.genomics.metadata.downloader_transformer.finngen
 
-import java.io.{File, FileInputStream, FileWriter}
+import java.io.{File, FileInputStream, FileWriter, PrintWriter}
 import java.net.URL
 import java.security.{DigestInputStream, MessageDigest}
 
@@ -103,7 +103,8 @@ class FinnGenDownloader extends Downloader{
     readerManifest.getLines().drop(1).take(20)foreach(line => {
 
       val fileUrl = line.split("\t")(6)
-      val fileName = line.split("\t")(0) + ".gz"
+      //val fileName = line.split("\t")(0) + ".gz"
+      val fileName = line.split("\t")(0) + ".gdm"
       val filePath = path + File.separator + fileName
 
 
@@ -112,7 +113,11 @@ class FinnGenDownloader extends Downloader{
       try {
 
         //the file is downloaded directly inside the File object
-        new URL(fileUrl) #> new File(filePath) !!
+        //new URL(fileUrl) #> new File(filePath) !!
+        val file = new File(filePath)
+        val writer = new PrintWriter(file)
+        writer.write("empty")
+        writer.close()
 
         counter = counter + 1
 
