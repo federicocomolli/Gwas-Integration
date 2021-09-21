@@ -197,7 +197,8 @@ class FinnGenTransformer extends Transformer {
     manifestReader.getLines().drop(1).foreach(line => {
       val tmp = fileName.split("\\.")(0)
       val bool = line.contains(tmp)
-      if(bool) {
+      val endpoint = line.split("\t")(0)
+      if(bool && tmp.length == endpoint.length) {
         val meta = manifestHeader.zip(line.split("\t"))
         for ( (k,v) <- meta) {
           if (!v.isEmpty) writer.write(s"$k\t$v\n")
