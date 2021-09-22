@@ -100,44 +100,47 @@ class FinnGenDownloader extends Downloader{
     val total = readerManifest.getLines().length - 1
     var counter = 0
     readerManifest = scala.io.Source.fromFile(manifestPath)
-    //readerManifest.getLines().drop(1).take(20).foreach(line => {
-    readerManifest.getLines().drop(1).foreach(line => {
+    readerManifest.getLines().drop(1).take(20).foreach(line => {
+    //readerManifest.getLines().drop(1).foreach(line => {
 
-      val fileUrl = line.split("\t")(6)
-      //val fileName = line.split("\t")(0) + ".gz"
-      val fileName = line.split("\t")(0) + ".gdm"
-      val filePath = path + File.separator + fileName
+      val fileTrait = line.split("\t")(1)
+      if (!fileTrait.equals("")) {
+        val fileUrl = line.split("\t")(6)
+        //val fileName = line.split("\t")(0) + ".gz"
+        val fileName = line.split("\t")(0) + ".gdm"
+        val filePath = path + File.separator + fileName
 
 
-      FileDatabase.getFileNameAndCopyNumber(FileDatabase.fileId(datasetId, fileUrl, Stage.DOWNLOAD, fileName))
+        FileDatabase.getFileNameAndCopyNumber(FileDatabase.fileId(datasetId, fileUrl, Stage.DOWNLOAD, fileName))
 
-      try {
+        try {
 
-        //the file is downloaded directly inside the File object
-        //new URL(fileUrl) #> new File(filePath) !!
-        val file = new File(filePath)
-        val writer = new PrintWriter(file)
-        writer.write("empty")
-        writer.close()
+          //the file is downloaded directly inside the File object
+          //new URL(fileUrl) #> new File(filePath) !!
+          val file = new File(filePath)
+          val writer = new PrintWriter(file)
+          writer.write("empty")
+          writer.close()
 
-        counter = counter + 1
+          counter = counter + 1
 
-        if (new File(filePath).exists()) {
-          logger.info(s"Downloading [$counter/$total]: " + filePath + " from: " + fileUrl + " DONE")
-          val fileId = FileDatabase.fileId(datasetId, fileUrl, Stage.DOWNLOAD, fileName)
-          val hash = computeHash(filePath)
-          FileDatabase.markAsUpdated(fileId, new File(filePath).length.toString, hash)
-          true
+          if (new File(filePath).exists()) {
+            logger.info(s"Downloading [$counter/$total]: " + filePath + " from: " + fileUrl + " DONE")
+            val fileId = FileDatabase.fileId(datasetId, fileUrl, Stage.DOWNLOAD, fileName)
+            val hash = computeHash(filePath)
+            FileDatabase.markAsUpdated(fileId, new File(filePath).length.toString, hash)
+            true
+          }
+          else {
+            logger.error("Downloading: " + filePath + " from: " + fileUrl + " failed: ")
+            false
+          }
+
+        } catch {
+          case e: Throwable =>
+            logger.error("Downloading: " + filePath + " from: " + fileUrl + " failed. ")
+            false
         }
-        else {
-          logger.error("Downloading: " + filePath + " from: " + fileUrl + " failed: ")
-          false
-        }
-
-      } catch {
-        case e: Throwable =>
-          logger.error("Downloading: " + filePath + " from: " + fileUrl + " failed. ")
-          false
       }
     })
 

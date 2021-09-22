@@ -254,7 +254,7 @@ object DbHandler {
   //GWAS
   def insertCohort(itemId: Int, traitName: String, caseNumber_initial: Int, controlNumber_initial: Int, individualNumber_initial: Int, triosNumber_initial: Int,
                    caseNumber_replicate: Int, controlNumber_replicate: Int, individualNumber_replicate: Int, triosNumber_replicate: Int, sourceId: String): Int = {
-    val idQuery = (cohorts returning cohorts.map(_.cohortId)) += (None, itemId, traitName, caseNumber_initial, controlNumber_initial, individualNumber_initial, triosNumber_initial,
+    val idQuery = (cohorts returning cohorts.map(_.cohortId)) += (None, itemId, traitName, None, caseNumber_initial, controlNumber_initial, individualNumber_initial, triosNumber_initial,
                                                                        caseNumber_replicate, controlNumber_replicate, individualNumber_replicate, triosNumber_replicate, sourceId)
     val executionId = database.run(idQuery)
     val id = Await.result(executionId, Duration.Inf)
@@ -266,9 +266,9 @@ object DbHandler {
         val query = for {
       cohort <- cohorts if cohort.sourceId === sourceId
     }
-      yield (cohort.itemId, cohort.traitName, cohort.caseNumber_initial, cohort.controlNumber_initial, cohort.individualNumber_initial, cohort.triosNumber_initial,
+      yield (cohort.itemId, cohort.traitName, cohort.traitNameTid, cohort.caseNumber_initial, cohort.controlNumber_initial, cohort.individualNumber_initial, cohort.triosNumber_initial,
                                               cohort.caseNumber_replicate, cohort.controlNumber_replicate, cohort.individualNumber_replicate, cohort.triosNumber_replicate)
-    val updateAction = query.update(itemId, traitName, caseNumber_initial, controlNumber_initial, individualNumber_initial, triosNumber_initial,
+    val updateAction = query.update(itemId, traitName, None, caseNumber_initial, controlNumber_initial, individualNumber_initial, triosNumber_initial,
                                                        caseNumber_replicate, controlNumber_replicate, individualNumber_replicate, triosNumber_replicate)
     val execution = database.run(updateAction)
     Await.result(execution, Duration.Inf)
@@ -1006,12 +1006,14 @@ object DbHandler {
   //---------------------------------- Definition of the SOURCES table--------------------------------------------------
 
   class Cohort(tag: Tag) extends
-    Table[(Option[Int], Int, String, Int, Int, Int, Int, Int, Int, Int, Int, String)](tag, COHORT_TABLE_NAME) {
+    Table[(Option[Int], Int, String, Option[Int], Int, Int, Int, Int, Int, Int, Int, Int, String)](tag, COHORT_TABLE_NAME) {
     def cohortId = column[Int]("cohort_id", O.PrimaryKey, O.AutoInc)
 
     def itemId = column[Int]("item_id")
 
     def traitName = column[String]("trait_name")
+
+    def traitNameTid = column[Option[Int]]("trait_name_tid", O.Default(None))
 
     def caseNumber_initial = column[Int]("case_number_initial")
 
@@ -1037,7 +1039,7 @@ object DbHandler {
       onDelete = ForeignKeyAction.Cascade
     )
 
-    def * = (cohortId.?, itemId, traitName, caseNumber_initial, controlNumber_initial, individualNumber_initial, triosNumber_initial,
+    def * = (cohortId.?, itemId, traitName, traitNameTid, caseNumber_initial, controlNumber_initial, individualNumber_initial, triosNumber_initial,
                     caseNumber_replicate, controlNumber_replicate, individualNumber_replicate, triosNumber_replicate, sourceId)
   }
 

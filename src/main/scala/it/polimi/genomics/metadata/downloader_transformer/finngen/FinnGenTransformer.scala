@@ -198,10 +198,14 @@ class FinnGenTransformer extends Transformer {
       val tmp = fileName.split("\\.")(0)
       val bool = line.contains(tmp)
       val endpoint = line.split("\t")(0)
+      val traitName = line.split("\t")(1)
       if(bool && tmp.length == endpoint.length) {
         val meta = manifestHeader.zip(line.split("\t"))
         for ( (k,v) <- meta) {
-          if (!v.isEmpty) writer.write(s"$k\t$v\n")
+          if (k.contains("name")){ //check if traitName has quotation marks
+            val t = v.replaceAll("\"", "")
+            writer.write(s"$k\t$t\n")
+          } else if (!v.isEmpty) writer.write(s"$k\t$v\n")
         }
       }
 
