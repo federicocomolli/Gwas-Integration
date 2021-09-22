@@ -36,7 +36,7 @@ class GwasTransformer extends Transformer {
       //val reader = Source.fromFile(inFolder + "\\" + filename)
       reader.getLines().drop(1).foreach(line => {
         val tmp = line.split("\t")
-        val flag = tmp(20).contains("chr") || tmp(20).contains("Chr")
+        val flag = (tmp.length == 38 && (tmp(20).contains("chr") || tmp(20).contains("Chr")))
         if (tmp.length == 38 && (tmp(11)!="" || flag)){ accessionList += tmp(36)}
       })
       reader.close()
