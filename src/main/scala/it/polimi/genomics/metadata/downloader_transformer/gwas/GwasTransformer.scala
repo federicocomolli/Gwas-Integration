@@ -35,6 +35,7 @@ class GwasTransformer extends Transformer {
       val reader = Source.fromFile(inFolder + File.separator + filename)
       //val reader = Source.fromFile(inFolder + "\\" + filename)
       reader.getLines().drop(1).foreach(line => {
+      //reader.getLines().drop(1).take(20).foreach(line => {
         val tmp = line.split("\t")
         val flag = (tmp.length == 38 && (tmp(20).contains("chr") || tmp(20).contains("Chr")))
         if (tmp.length == 38 && (tmp(11)!="" || flag)){ accessionList += tmp(36)}
@@ -105,7 +106,7 @@ class GwasTransformer extends Transformer {
     val writer = new PrintWriter(transformedFile.getAbsolutePath)
     val acc = filename.substring(0, filename.lastIndexOf("."))
     readerRegion.getLines().drop(1).foreach(line => {
-      val flag = line.split("\t")(20).contains("chr") || line.split("\t")(20).contains("Chr")
+      val flag = line.split("\t").length == 38 && (line.split("\t")(20).contains("chr") || line.split("\t")(20).contains("Chr"))
       val current = (line.contains(acc) && (line.split("\t")(11)!="" || flag))
       if (current) {
         var regionLine = new ListBuffer[String]()
