@@ -221,7 +221,11 @@ class GwasTransformer extends Transformer {
 
     //Here I could make a check on the empty values
     for ( (k,v) <- studiesMeta) {
-      if (!v.isEmpty) writer.write(s"$k\t$v\n")
+      //added 24_09_2021 by Federico Comolli
+      if ((!v.isEmpty) && (k.contains("name") || (k.contains("TRAIT")))) { //check if traitName has quotation marks
+        val t = v.replaceAll("\"", "")
+        writer.write(s"$k\t$t\n")
+      } else if (!v.isEmpty) writer.write(s"$k\t$v\n")
     }
 
     //extraction of metadata from ancestry file
