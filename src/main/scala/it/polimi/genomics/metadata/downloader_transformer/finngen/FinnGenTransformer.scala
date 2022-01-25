@@ -118,7 +118,6 @@ class FinnGenTransformer extends Transformer {
     */
   def regionTransformation(source: xml.Source, filename: String, originPath: String, destinationPath: String): Unit = {
 
-    /*
     //remove the first line containing the names of the columns
     val fileReader = scala.io.Source.fromFile(destinationPath + File.separator + filename)
     val writer = new PrintWriter(destinationPath + File.separator + "tmp.tsv")
@@ -160,10 +159,9 @@ class FinnGenTransformer extends Transformer {
     catch {
       case _: IOException => logger.warn("could not change the file " + destinationPath + File.separator + filename)
     }
-    */
     val transformedFile = new File(destinationPath + File.separator + filename)
-    //val originalName = filename.substring(0, filename.lastIndexOf(".")) + ".gz"
-    val originalName = filename.substring(0, filename.lastIndexOf(".")) + ".gdm"
+    val originalName = filename.substring(0, filename.lastIndexOf(".")) + ".gz"
+    //val originalName = filename.substring(0, filename.lastIndexOf(".")) + ".gdm"
     val sourceId = FileDatabase.sourceId(source.name)
     val datasetId = FileDatabase.datasetId(sourceId, source.datasets.head.name)
     val filePath = originPath + File.separator + originalName
@@ -213,8 +211,8 @@ class FinnGenTransformer extends Transformer {
 
     writer.close()
     val transformedFile = new File(outPath + File.separator + fileName)
-    //val originalName = fileName.split("\\.")(0) + ".gz"
-    val originalName = fileName.split("\\.")(0) + ".gdm"
+    val originalName = fileName.split("\\.")(0) + ".gz"
+    //val originalName = fileName.split("\\.")(0) + ".gdm"
     val sourceId = FileDatabase.sourceId(source.name)
     val datasetId = FileDatabase.datasetId(sourceId, source.datasets.head.name)
     val filePath = inPath + File.separator + originalName
