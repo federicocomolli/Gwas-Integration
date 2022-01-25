@@ -106,9 +106,13 @@ class FinnGenDownloader extends Downloader{
       val fileTrait = line.split("\t")(1)
       if (!fileTrait.equals("")) {
         val fileUrl = line.split("\t")(6)
-        //val fileName = line.split("\t")(0) + ".gz"
-        val fileName = line.split("\t")(0) + ".gdm"
+        val fileName = line.split("\t")(0) + ".gz"
+        //val fileName = line.split("\t")(0) + ".gdm"
         val filePath = path + File.separator + fileName
+        if (fileName == "F5_SCHIZOTYP.gz" || fileName == "F5_SCHIZOAFF.gz" ||
+           fileName == "KRA_PSY_SCHIZODEL.gz" || fileName == "G6_ALZHEIMER_INCLAVO.gz" ||
+           fileName == "KRA_PSY_SCHIZODEL_EXMORE.gz" || fileName == "F5_ALZHDEMENT.gz" ||
+           fileName == "G6_ALZHEIMER_EXMORE.gz" || fileName == "G6_ALZHEIMER.gz" || fileName == "F5_SCHIZO.gz"){
 
 
         FileDatabase.getFileNameAndCopyNumber(FileDatabase.fileId(datasetId, fileUrl, Stage.DOWNLOAD, fileName))
@@ -140,7 +144,7 @@ class FinnGenDownloader extends Downloader{
           case e: Throwable =>
             logger.error("Downloading: " + filePath + " from: " + fileUrl + " failed. ")
             false
-        }
+        }}
       }
     })
 
