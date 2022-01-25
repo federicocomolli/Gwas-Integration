@@ -120,11 +120,11 @@ class FinnGenDownloader extends Downloader{
         try {
 
           //the file is downloaded directly inside the File object
-          //new URL(fileUrl) #> new File(filePath) !!
-          val file = new File(filePath)
-          val writer = new PrintWriter(file)
-          writer.write("empty")
-          writer.close()
+          new URL(fileUrl) #> new File(filePath) !!
+          //val file = new File(filePath)
+          //val writer = new PrintWriter(file)
+          //writer.write("empty")
+          //writer.close()
 
           counter = counter + 1
 
